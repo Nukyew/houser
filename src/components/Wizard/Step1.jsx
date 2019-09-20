@@ -68,16 +68,21 @@ class Step1 extends React.Component{
     render(){
         return(
             <div>
-            This is Step 1.
-            <form>
-                <input placeholder="name" onChange={e=>this.handleName(e)}/>
-                <input placeholder="address" onChange={e=>this.handleAddress(e)}/>
-                <input placeholder="city" onChange={e=>this.handleCity(e)}/>
-                <input placeholder="state" maxLength="2" onChange={e=>this.handleState(e)}/>
-                <input placeholder="zip" type="number" onChange={e=>this.handleZip(e)}/>
-            </form>
-            <Link to='/'><button>Previous</button></Link>
-            <Link to='/wizard/step2'><button>Next</button></Link>
+                <form>
+                    <h3>Property Name</h3>
+                    <input placeholder="name" onChange={e=>this.handleName(e)}/>
+                    <h3>Address</h3>
+                    <input placeholder="address" onChange={e=>this.handleAddress(e)}/>
+                    <h3>City</h3>
+                    <input placeholder="city" onChange={e=>this.handleCity(e)}/>
+                    <h3>State</h3>
+                    <input placeholder="state" maxLength="2" onChange={e=>this.handleState(e)}/>
+                    <h3>Zip</h3>
+                    <input placeholder="zip" maxLength="6" type="number" onChange={e=>this.handleZip(e)}/>
+                </form>
+                <div className="wizard-buttons">
+                    <Link to='/wizard/step2'><button>Next</button></Link>
+                </div>
         </div>
         )
     }

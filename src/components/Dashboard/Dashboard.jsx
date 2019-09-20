@@ -32,7 +32,7 @@ class Dashboard extends React.Component{
     render(){
         let houseList = this.state.houseList.map(el => {
             return(
-                <div key={el.id}>
+                <div className="houses" key={el.id}>
                     <House 
                         name={el.name}
                         address={el.address}
@@ -40,6 +40,7 @@ class Dashboard extends React.Component{
                         state={el.state}
                         zip={el.zip}
                         id={el.id}
+                        img={el.img}
                         monthlyMortgage={el.mortgage}
                         monthlyRent={el.rent}
                         deleteHouse={this.deleteHouse}
@@ -48,11 +49,18 @@ class Dashboard extends React.Component{
             )
         })
         return(
-            <div>
-                This is the Dashboard.
-                <Link to='/wizard/step1'><button>Add New Property</button></Link>
-                {/* <House /> */}
-                {houseList}
+            <div className="dashboard-wrapper">
+                <div className="dashboard">
+                    <div className="dashboard-header">
+                        <p>Dashboard</p>
+                        <Link to='/wizard/step1'><button className="add-new-property">Add New Property</button></Link>
+                    </div>
+                    <hr/>
+                    <h4>House Listings</h4>
+                    <main>
+                        {houseList}
+                    </main>
+                </div>
             </div>
         )
     }

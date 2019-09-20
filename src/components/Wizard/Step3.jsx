@@ -39,9 +39,9 @@ class Step3 extends React.Component{
 
     async addHouse() {
         const reduxState = store.getState()
-        let {name, address, city, state, zip} = reduxState
+        let {name, address, city, state, img, zip} = reduxState
         let {monthlyMortgage, monthlyRent} = this.state
-        await axios.post('/api/houses', {name, address, city, state, zip, monthlyMortgage, monthlyRent})
+        await axios.post('/api/houses', {name, address, city, state, zip, img, monthlyMortgage, monthlyRent})
         store.dispatch({
             type: CANCEL
         })
@@ -51,11 +51,14 @@ class Step3 extends React.Component{
     render(){
         return(
             <div>
-                This is Step 3.
+                <h3>Monthly Mortgage Amount</h3>
                 <input placeholder="Monthly Mortgage Amount" onChange={e=>this.handleMonthyMortage(e)}/>
+                <h3>Desired Monthly Rent</h3>
                 <input placeholder="Monthly Rent Amount" onChange={e=>this.handleMonthlyRent(e)}/>
-                <Link to='/wizard/step2'><button>Previous</button></Link>
-                <button onClick={() => this.addHouse()}>Complete</button>
+                <div className="wizard-buttons-step23">
+                    <Link to='/wizard/step2'><button>Previous</button></Link>
+                    <button className="complete" onClick={() => this.addHouse()}>Complete</button>
+                </div>
             </div>
         )
     }
