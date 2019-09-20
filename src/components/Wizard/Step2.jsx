@@ -32,7 +32,7 @@ class Step2 extends Component {
         return(
             <div>
                 <h3>Image URL</h3>
-                <input placeholder="Image URL" onChange={e=>this.handleImg(e)}/>
+                <input value={this.state.img} placeholder="Image URL" onChange={e=>this.handleImg(e)}/>
                 <div className="wizard-buttons-step23">
                     <Link to='/wizard/step1'><button>Previous</button></Link>
                     <Link to='/wizard/step3'><button>Next</button></Link>

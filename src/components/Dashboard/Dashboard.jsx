@@ -10,6 +10,7 @@ class Dashboard extends React.Component{
         this.state = {
             houseList: []
         }
+        this.deleteHouse = this.deleteHouse.bind(this)
     }
 
     componentDidMount() {
@@ -24,7 +25,7 @@ class Dashboard extends React.Component{
         console.log(this.state.houseList)
     }
 
-    deleteHouse = async (id) => {
+    async deleteHouse(id) {
         await axios.delete(`/api/houses/${id}`)
         this.getHouses()
     }

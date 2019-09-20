@@ -8,11 +8,12 @@ module.exports = {
     addHouse: async (req, res) => {
         const db = req.app.get('db')
         const {name, address, city, state, zip, img, monthlyMortgage, monthlyRent} = req.body
-        console.log(img)
-        // const addedHouse = await db.add_house([name, address, city, state, zip])
-        await db.add_house([name, address, city, state, zip, img, monthlyMortgage, monthlyRent])
-        // res.status(200).send(addedHouse)
-        res.sendStatus(200)
+        const addHouse = await db.add_house([name, address, city, state, zip, img, monthlyMortgage, monthlyRent])
+        if (addHouse){
+            res.sendStatus(200)
+        } else {
+            res.status(500).send('Something went wrong with the server. Please try again.')
+        }
     },
     deleteHouse: async (req, res) => {
         const db = req.app.get('db')

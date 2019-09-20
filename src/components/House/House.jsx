@@ -5,7 +5,7 @@ class House extends React.Component{
         return(
             <>
             <div className="house">
-                <div style={{
+                {this.props.img ? <div style={{
                         backgroundImage:`url(${this.props.img})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -15,7 +15,12 @@ class House extends React.Component{
                         alignSelf: "center",
                         marginLeft: "10px"
                     }}
-                    className="house-img"></div>
+                    className="house-img"></div> :
+                    <div style={{
+                        width: "236px",
+                        height: "175px"
+                    }}></div>
+                    }
                 {/* <img alt={this.props.name} height="100px" width="100px" src={this.props.img}/> */}
                 <div className="house-desc-main">
                     <p>Name: {this.props.name}</p>

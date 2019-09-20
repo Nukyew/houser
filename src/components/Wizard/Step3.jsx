@@ -52,9 +52,9 @@ class Step3 extends React.Component{
         return(
             <div>
                 <h3>Monthly Mortgage Amount</h3>
-                <input placeholder="Monthly Mortgage Amount" onChange={e=>this.handleMonthyMortage(e)}/>
+                <input value={this.state.monthlyMortgage} placeholder="Monthly Mortgage Amount" type="number" onChange={e=>this.handleMonthyMortage(e)}/>
                 <h3>Desired Monthly Rent</h3>
-                <input placeholder="Monthly Rent Amount" onChange={e=>this.handleMonthlyRent(e)}/>
+                <input value={this.state.monthlyRent} placeholder="Monthly Rent Amount" type="number" onChange={e=>this.handleMonthlyRent(e)}/>
                 <div className="wizard-buttons-step23">
                     <Link to='/wizard/step2'><button>Previous</button></Link>
                     <button className="complete" onClick={() => this.addHouse()}>Complete</button>
