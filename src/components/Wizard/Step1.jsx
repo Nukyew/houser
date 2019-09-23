@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import store, {HANDLE_NAME, HANDLE_ADDRESS, HANDLE_CITY, HANDLE_STATE, HANDLE_ZIP} from '../../store'
+import store, {STEP_ONE} from '../../store'
 
 class Step1 extends React.Component{
     constructor(){
@@ -14,74 +14,39 @@ class Step1 extends React.Component{
             zip: reduxState.zip
         }
     }
-
-    componentDidMount = () => {
-        store.subscribe(() => {
-            const reduxState = store.getState()
-            this.setState({
-                name: reduxState.name,
-                address: reduxState.address,
-                city: reduxState.city,
-                state: reduxState.state,
-                zip: reduxState.zip
-            })
-        }) 
+    
+    handleChange = e => {
+        if (e.target.id === "name") this.setState({name: e.target.value})
+        else if (e.target.id === "address") this.setState({address: e.target.value})
+        else if (e.target.id === "city") this.setState({city: e.target.value})
+        else if (e.target.id === "state") this.setState({state: e.target.value})
+        else if (e.target.id === "zip") this.setState({zip: e.target.value})
     }
 
-    handleName = e => {
+    nextPage = () => {
         store.dispatch({
-            type: HANDLE_NAME,
-            payload: e.target.value
+            type: STEP_ONE,
+            payload: this.state
         })
     }
-
-    handleAddress = e => {
-        store.dispatch({
-            type: HANDLE_ADDRESS,
-            payload: e.target.value
-        })
-    }
-
-    handleCity = e => {
-        store.dispatch({
-            type: HANDLE_CITY,
-            payload: e.target.value
-        })
-    }
-
-    handleState = e => {
-        store.dispatch({
-            type: HANDLE_STATE,
-            payload: e.target.value
-        })
-    }
-
-    handleZip = e => {
-        store.dispatch({
-            type: HANDLE_ZIP,
-            payload: e.target.value
-        })
-    }
-
-
 
     render(){
         return(
             <div>
                 <form>
                     <h3>Property Name</h3>
-                    <input placeholder="name" value={this.state.name} onChange={e=>this.handleName(e)}/>
+                    <input id="name" placeholder="name" value={this.state.name} onChange={e=>this.handleChange(e)}/>
                     <h3>Address</h3>
-                    <input placeholder="address" value={this.state.address} onChange={e=>this.handleAddress(e)}/>
+                    <input id="address" placeholder="address" value={this.state.address} onChange={e=>this.handleChange(e)}/>
                     <h3>City</h3>
-                    <input placeholder="city" value={this.state.city} onChange={e=>this.handleCity(e)}/>
+                    <input id="city" placeholder="city" value={this.state.city} onChange={e=>this.handleChange(e)}/>
                     <h3>State</h3>
-                    <input placeholder="state" value={this.state.state} maxLength="2" onChange={e=>this.handleState(e)}/>
+                    <input id="state" placeholder="state" value={this.state.state} maxLength="2" onChange={e=>this.handleChange(e)}/>
                     <h3>Zip</h3>
-                    <input placeholder="zip" value={this.state.zip} maxLength="6" type="number" onChange={e=>this.handleZip(e)}/>
+                    <input id="zip" placeholder="zip" value={this.state.zip} maxLength="6" type="number" onChange={e=>this.handleChange(e)}/>
                 </form>
                 <div className="wizard-buttons">
-                    <Link to='/wizard/step2'><button>Next</button></Link>
+                    <Link to='/wizard/step2'><button onClick={() => this.nextPage()}>Next</button></Link>
                 </div>
         </div>
         )

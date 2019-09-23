@@ -21,10 +21,15 @@ class Step2 extends Component {
     }
 
     handleImg = e => {
-        console.log(e.target.value)
+        this.setState({
+            img: e.target.value
+        })
+    }
+
+    nextStep = e => {
         store.dispatch({
             type: HANDLE_IMG,
-            payload: e.target.value
+            payload: this.state.img
         })
     }
 
@@ -34,8 +39,8 @@ class Step2 extends Component {
                 <h3>Image URL</h3>
                 <input value={this.state.img} placeholder="Image URL" onChange={e=>this.handleImg(e)}/>
                 <div className="wizard-buttons-step23">
-                    <Link to='/wizard/step1'><button>Previous</button></Link>
-                    <Link to='/wizard/step3'><button>Next</button></Link>
+                    <Link to='/wizard/step1'><button onClick={() => this.nextStep()}>Previous</button></Link>
+                    <Link to='/wizard/step3'><button onClick={() => this.nextStep()}>Next</button></Link>
                 </div>
             </div>
         )
