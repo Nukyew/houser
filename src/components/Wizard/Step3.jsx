@@ -51,6 +51,7 @@ class Step3 extends React.Component{
     render(){
         return(
             <div>
+                <h4>Recommended Rent: ${this.state.monthlyMortgage * 1.25}</h4>
                 <h3>Monthly Mortgage Amount</h3>
                 <input value={this.state.monthlyMortgage} placeholder="Monthly Mortgage Amount" type="number" onChange={e=>this.handleMonthyMortage(e)}/>
                 <h3>Desired Monthly Rent</h3>
